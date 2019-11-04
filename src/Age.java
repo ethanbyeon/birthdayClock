@@ -1,6 +1,4 @@
-import java.util.*;
 import java.time.*;
-import java.lang.Object.*;
 import java.time.temporal.ChronoUnit;
 
 public class Age {

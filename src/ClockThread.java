@@ -4,9 +4,6 @@ import java.time.temporal.ChronoUnit;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import javax.swing.JLabel;
-import javax.swing.ImageIcon;
-
 public class ClockThread extends Thread {
 	
 	private DigitalClock dc;
@@ -83,8 +80,27 @@ public class ClockThread extends Thread {
 		
 		weeksBetween = ChronoUnit.WEEKS.between(LocalDate.now(), compare);
 		daysBetween = ChronoUnit.DAYS.between(LocalDate.now(), compare);
-		until = weeksBetween + " Week(s) " + daysBetween + " Day(s)"; 
 		
+		if(weeksBetween == 0) {
+			if(daysBetween == 1) {
+				until = weeksBetween + " Weeks " + daysBetween + " Day"; 
+			}else if(daysBetween > 1) {
+				until = weeksBetween + " Weeks " + daysBetween + " Days"; 
+			}
+		}else if(weeksBetween == 1) {
+			if(daysBetween == 1) {
+				until = weeksBetween + " Week " + daysBetween + " Day"; 
+			}else if(daysBetween > 1) {
+				until = weeksBetween + " Week " + daysBetween + " Days"; 
+			}	
+		}else if(weeksBetween > 1) {
+			if(daysBetween == 1) {
+				until = weeksBetween + " Weeks " + daysBetween + " Day"; 
+			}else if(daysBetween > 1) {
+				until = weeksBetween + " Weeks " + daysBetween + " Days"; 
+			}
+		}
+			
 		dc.bdays.setText(name);
 		dc.next.setText("On: " + compare);
 		dc.countDown.setText("In: " + until);

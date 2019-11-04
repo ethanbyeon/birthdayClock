@@ -1,17 +1,10 @@
-import java.util.*;
-import java.text.*;
 import java.time.*;
-import java.lang.Object.*;
-import java.time.temporal.ChronoUnit;
 
 public class Student {  
 
     private String name;
 	public LocalDate dob;
 	private String period;
-	private LocalDate joe;
-	private LocalDateTime dateTime;
-	private LocalDateTime dateTime2;
 		
 	public Student() {
 		name = "FIRST LAST";
