@@ -1,10 +1,6 @@
 import java.util.*;
 import java.awt.*;
 import javax.swing.*;
-import javax.swing.Timer;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class DigitalClock extends JFrame {
 	
@@ -29,19 +25,8 @@ public class DigitalClock extends JFrame {
 		frame.setLocationRelativeTo(null);
 		frame.setLayout(null);
 		
+		frame.setContentPane(new JLabel(new ImageIcon("C://Users//ethan//eclipse-workspace//birthdayClock//Images//slide1.jpg")));
 		frame.setBackground(Color.BLACK);
-		
-		
-		Timer timer = new Timer(1000, new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.setContentPane(new JLabel(pics.get(counter)));
-				counter++;
-				if(counter >= pics.size()) {
-					counter = 0;
-				}
-			}
-		});
-		
 
 		Font f = new Font("Arial",Font.BOLD,90);
 		Font t = new Font("AppleGothic",Font.BOLD,125);
@@ -81,10 +66,7 @@ public class DigitalClock extends JFrame {
 			data.add(s.get(i));
 		}
 		
-		//frame.setContentPane(new Jlabel(new ImageIcon()));
-		
 		frame.pack();
-		timer.start();
 		ct = new ClockThread(this);
 		frame.setVisible(true);
 	}
