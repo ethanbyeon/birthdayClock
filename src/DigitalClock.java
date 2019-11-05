@@ -1,14 +1,15 @@
 import java.util.*;
 import java.awt.*;
-
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.*;
+import javax.swing.Timer;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class DigitalClock extends JFrame {
 	
 	private JFrame frame;
-	private JLabel title;
+	public JLabel pic;
 	private ClockThread ct;
 	
 	public ArrayList<Student> data;
@@ -18,6 +19,9 @@ public class DigitalClock extends JFrame {
 	public JLabel date;
 	public JLabel military;
 	
+	private ArrayList<ImageIcon> pics = new ArrayList<ImageIcon>();
+	private int counter = 0;
+	
 	public DigitalClock(ArrayList<Student> s) {
 		frame = new JFrame("Birthday Clock");
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -26,16 +30,21 @@ public class DigitalClock extends JFrame {
 		frame.setLayout(null);
 		
 		frame.setBackground(Color.BLACK);
-		frame.setContentPane(new JLabel(new ImageIcon("C:\\Users\\ethan\\OneDrive\\Desktop\\BDayRUS\\src\\img\\bobross.jpg")));
 		
+		
+		Timer timer = new Timer(1000, new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.setContentPane(new JLabel(pics.get(counter)));
+				counter++;
+				if(counter >= pics.size()) {
+					counter = 0;
+				}
+			}
+		});
+		
+
 		Font f = new Font("Arial",Font.BOLD,90);
 		Font t = new Font("AppleGothic",Font.BOLD,125);
-		
-//		title = new JLabel("Happy Birthday!");
-//		title.setBounds(0,0,1500,170);
-//		title.setFont(t);
-//		title.setForeground(Color.RED);
-//		frame.add(title);
 		
 		bdays = new JLabel("JOE SMITH");
 		bdays.setBounds(0,260,5000,170);
@@ -72,17 +81,11 @@ public class DigitalClock extends JFrame {
 			data.add(s.get(i));
 		}
 		
+		//frame.setContentPane(new Jlabel(new ImageIcon()));
+		
 		frame.pack();
+		timer.start();
 		ct = new ClockThread(this);
 		frame.setVisible(true);
-	}
-	
-	private void slideShow() {
-		String[] pics = {
-			"C:\\Users\\ethan\\OneDrive\\Desktop\\BDayRUS\\src\\img\\bobross.jpg",
-			"C:\\Users\\ethan\\OneDrive\\Desktop\\BDayRUS\\src\\img\\heman.jpg",
-			"C:\\Users\\ethan\\OneDrive\\Desktop\\BDayRUS\\src\\img\\spider.jpg",
-			"C:\\Users\\ethan\\OneDrive\\Desktop\\BDayRUS\\src\\img\\spiderclone.jpg"
-		};
 	}
 }
