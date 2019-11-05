@@ -76,4 +76,13 @@ public class DigitalClock extends JFrame {
 		ct = new ClockThread(this);
 		frame.setVisible(true);
 	}
+	
+	private void slideShow() {
+		String[] pics = {
+			"C:\\Users\\ethan\\OneDrive\\Desktop\\BDayRUS\\src\\img\\bobross.jpg",
+			"C:\\Users\\ethan\\OneDrive\\Desktop\\BDayRUS\\src\\img\\heman.jpg",
+			"C:\\Users\\ethan\\OneDrive\\Desktop\\BDayRUS\\src\\img\\spider.jpg",
+			"C:\\Users\\ethan\\OneDrive\\Desktop\\BDayRUS\\src\\img\\spiderclone.jpg"
+		};
+	}
 }
