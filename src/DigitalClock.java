@@ -70,14 +70,14 @@ public class DigitalClock extends JFrame {
 		date = new JLabel("TODAY'S DATE");
 		date.setBounds(865,70,700,300);
 		date.setFont(f);
-		date.setForeground(Color.GREEN);
+		date.setForeground(Color.RED);
 		frame.add(date);
 		
 		//CURRENT TIME
 		military = new JLabel("CURRENT TIME");
 		military.setBounds(910,160,700,300);
 		military.setFont(f);
-		military.setForeground(Color.GREEN);
+		military.setForeground(Color.BLUE);
 		frame.add(military);
 		
 		data = new ArrayList<Student>();
