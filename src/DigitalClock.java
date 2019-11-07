@@ -15,9 +15,6 @@ public class DigitalClock extends JFrame {
 	public JLabel date;
 	public JLabel military;
 	
-	private ArrayList<ImageIcon> pics = new ArrayList<ImageIcon>();
-	private int counter = 0;
-	
 	public DigitalClock(ArrayList<Student> s) {
 		frame = new JFrame("Birthday Clock");
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
