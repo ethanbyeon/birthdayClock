@@ -1,4 +1,5 @@
 import java.util.*;
+import java.awt.*;
 import java.time.*;
 import java.time.temporal.ChronoUnit;
 import java.time.LocalDateTime;
@@ -33,6 +34,36 @@ public class ClockThread extends Thread {
 		}
 	}
 	
+	private void checkBday(ArrayList<Student> s) {
+		ArrayList<Student> nextBday = new ArrayList<Student>();
+		for(int i = 0; i < s.size(); i++){
+			if(s.get(i).getMonthOfYear() == today.getMonthValue() && s.get(i).getDayOfMonth() == today.getDayOfMonth()){
+				sameDay.add(s.get(i));
+			}
+			if(s.get(i).getDayOfYear() > today.getDayOfYear()){
+				nextBday.add(s.get(i));
+			}
+		}
+		
+		Student temp = nextBday.get(0);
+		if(nextBday.size() > 1) {	
+			for(int i = 1; i < nextBday.size(); i++){
+				if(nextBday.get(i).getDayOfYear() < temp.getDayOfYear()){
+					temp = nextBday.get(i);
+				}
+			}
+		}
+		
+		if(sameDay.size() == 1) {
+			dc.bdays.setText(sameDay.get(0).getName());
+			dc.now.setText("TODAY");
+		}else if(sameDay.size() > 1) {
+			sameBday();
+		}else {
+			displayNextBday(temp, temp.getName());
+		}	
+	}
+	
 	private void sameBday() {
 		String names = "";
 		for(int i = 0; i < sameDay.size(); i++){
@@ -45,32 +76,6 @@ public class ClockThread extends Thread {
 		dc.bdays.setText(names);
 	}
 	
-	private void checkBday(ArrayList<Student> s) {
-		ArrayList<Student> nextBday = new ArrayList<Student>();
-		for(int i = 0; i < s.size(); i++){
-			if(s.get(i).getDayOfYear() == today.getDayOfYear()){
-				sameDay.add(s.get(i));
-			}
-			if(s.get(i).getDayOfYear() > today.getDayOfYear()){
-				nextBday.add(s.get(i));
-			}
-		}
-		
-		Student temp = nextBday.get(0);
-		for(int i = 1; i < nextBday.size(); i++){
-			if(nextBday.get(i).getDayOfYear() < temp.getDayOfYear()){
-				temp = nextBday.get(i);
-			}
-		}
-		
-		if(sameDay.size() > 1) {
-			sameBday();
-		}else {
-			displayNextBday(temp, temp.getName());
-		}	
-	}
-	
-	//fix date between and set it to same year but different date
 	private void displayNextBday(Student s, String name) {
 		long weeksBetween = 0L;
 		long daysBetween = 0L;

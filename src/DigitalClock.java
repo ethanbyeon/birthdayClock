@@ -9,7 +9,9 @@ public class DigitalClock extends JFrame {
 	private ClockThread ct;
 	
 	public ArrayList<Student> data;
+	public JLabel heading;
 	public JLabel bdays;
+	public JLabel now;
 	public JLabel next;
 	public JLabel countDown;
 	public JLabel date;
@@ -22,40 +24,60 @@ public class DigitalClock extends JFrame {
 		frame.setLocationRelativeTo(null);
 		frame.setLayout(null);
 		
-		frame.setContentPane(new JLabel(new ImageIcon("C://Users//ethan//eclipse-workspace//birthdayClock//Images//slide1.jpg")));
+		frame.setContentPane(new JLabel(new ImageIcon("C://Users//ethan//eclipse-workspace//birthdayClock//Images//slide5.jpg")));
 		frame.setBackground(Color.BLACK);
 
-		Font f = new Font("Arial",Font.BOLD,90);
+		Font f = new Font("Arial",Font.BOLD,80);
+		Font d = new Font("Arial",Font.BOLD,60);
 		Font t = new Font("AppleGothic",Font.BOLD,125);
 		
+		//HEADING
+		heading = new JLabel("Happy Birthday!");
+		heading.setBounds(0,300,1000,170);
+		heading.setFont(f);
+		heading.setForeground(Color.RED);
+		frame.add(heading);
+		
+		//BDAY NAMES
 		bdays = new JLabel("JOE SMITH");
-		bdays.setBounds(0,260,5000,170);
+		bdays.setBounds(0,420,5000,170);
 		bdays.setFont(t);
 		bdays.setForeground(Color.BLUE);
 		frame.add(bdays);
 		
-		next = new JLabel("NEXT BDAY DATE");
-		next.setBounds(0,350,800,200);
-		next.setFont(f);
-		next.setForeground(Color.RED);
-		frame.add(next);
+		//BDAY TODAY
+		now = new JLabel("");
+		now.setBounds(0,530,800,200);
+		now.setFont(f);
+		now.setForeground(Color.GREEN);
+		frame.add(now);
 		
-		countDown = new JLabel("TIME UNTIL NEXT BDAY");
-		countDown.setBounds(0,440,1500,200);
-		countDown.setFont(f);
+		//TIME UNTIL NEXT BDAY
+		countDown = new JLabel("");
+		countDown.setBounds(0,510,1500,200);
+		countDown.setFont(d);
 		countDown.setForeground(Color.RED);
 		frame.add(countDown);
 		
+		//NEXT BDAY DATE
+		next = new JLabel("");
+		next.setBounds(0,580,800,200);
+		next.setFont(d);
+		next.setForeground(Color.RED);
+		frame.add(next);
+		
+		//TODAY'S DATE
 		date = new JLabel("TODAY'S DATE");
-		date.setBounds(530,500,700,300);
+		date.setBounds(865,70,700,300);
 		date.setFont(f);
-		date.setForeground(Color.BLACK);
+		date.setForeground(Color.GREEN);
 		frame.add(date);
 		
+		//CURRENT TIME
 		military = new JLabel("CURRENT TIME");
-		military.setBounds(580,600,700,300);
+		military.setBounds(910,160,700,300);
 		military.setFont(f);
-		military.setForeground(Color.BLACK);
+		military.setForeground(Color.GREEN);
 		frame.add(military);
 		
 		data = new ArrayList<Student>();
