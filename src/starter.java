@@ -4,7 +4,6 @@ import java.io.*;
 public class starter {
 	
 	static Scanner in;
-	static PrintWriter out;
 	
 	static ArrayList<Student> students;
 	
@@ -12,11 +11,8 @@ public class starter {
 		
 		try {
 			in = new Scanner(new File("Data.txt"));
-			out = new PrintWriter(new File("Data.out"));
-			
 			init();
 			
-			out.close();
 			in.close();
 			
 		}catch(Exception e){
