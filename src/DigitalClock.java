@@ -24,7 +24,7 @@ public class DigitalClock extends JFrame {
 		frame.setLocationRelativeTo(null);
 		frame.setLayout(null);
 		
-		frame.setContentPane(new JLabel(new ImageIcon("C://Users//ethan//eclipse-workspace//birthdayClock//Images//slide5.jpg")));
+		frame.setContentPane(new JLabel(new ImageIcon(this.getClass().getResource("bobross.jpg"))));
 		frame.setBackground(Color.BLACK);
 
 		Font f = new Font("Arial",Font.BOLD,80);
