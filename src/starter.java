@@ -1,18 +1,18 @@
 import java.util.*;
-import java.io.*;
+import java.net.*;
 
 public class starter {
 	
 	static Scanner in;
-	
 	static ArrayList<Student> students;
 	
     public static void main(String args[]) {
 		
 		try {
-			in = new Scanner(new File("Data.txt"));
-			init();
+			URL url = new URL("http://drneato.com/Bday/Data.txt");
+			in = new Scanner(url.openStream());
 			
+			init();
 			in.close();
 			
 		}catch(Exception e){
@@ -44,7 +44,7 @@ public class starter {
 					per = data.get(count);
 				}
 				
-				if(j == 2){
+				if(j == 2 && data.get(count).length() <= 10){
 					students.add(new Student(name, data.get(count), per));
 				}
 				count++;
