@@ -1,5 +1,4 @@
 import java.util.*;
-import java.awt.*;
 import java.time.*;
 import java.time.temporal.ChronoUnit;
 import java.time.LocalDateTime;
@@ -17,6 +16,7 @@ public class ClockThread extends Thread {
 	}
 	
 	public void run() {
+
 		while(true) {
 			LocalDateTime currentTime = LocalDateTime.now();
 			DateTimeFormatter formatCurrent = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -32,17 +32,15 @@ public class ClockThread extends Thread {
 			dc.date.setText(formatDateTime);
 			dc.military.setText(formatMilitaryTime);
 		}
+
 	}
 	
 	private void checkBday(ArrayList<Student> s) {
+
 		ArrayList<Student> nextBday = new ArrayList<Student>();
 		for(int i = 0; i < s.size(); i++){
-			if(s.get(i).getMonthOfYear() == today.getMonthValue() && s.get(i).getDayOfMonth() == today.getDayOfMonth()){
-				sameDay.add(s.get(i));
-			}
-			if(s.get(i).getDayOfYear() > today.getDayOfYear()){
-				nextBday.add(s.get(i));
-			}
+			if(s.get(i).getMonthOfYear() == today.getMonthValue() && s.get(i).getDayOfMonth() == today.getDayOfMonth()) sameDay.add(s.get(i));
+			if(s.get(i).getDayOfYear() > today.getDayOfYear()) nextBday.add(s.get(i));
 		}
 		
 		Student temp = nextBday.get(0);
@@ -61,10 +59,12 @@ public class ClockThread extends Thread {
 			sameBday();
 		}else {
 			displayNextBday(temp, temp.getName());
-		}	
+		}
+
 	}
 	
 	private void sameBday() {
+
 		String names = "";
 		for(int i = 0; i < sameDay.size(); i++){
 			if(i < sameDay.size() - 1){
@@ -74,9 +74,11 @@ public class ClockThread extends Thread {
 			}
 		}
 		dc.bdays.setText(names);
+
 	}
 	
 	private void displayNextBday(Student s, String name) {
+
 		long weeksBetween = 0L;
 		long daysBetween = 0L;
 		String until = "";
@@ -110,4 +112,5 @@ public class ClockThread extends Thread {
 		dc.next.setText("On: " + compare);
 		dc.countDown.setText("In: " + until);
 	}
+	
 }

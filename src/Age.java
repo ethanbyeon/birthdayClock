@@ -15,9 +15,11 @@ public class Age {
 	long diffNanos;
 	
 	public Age(Student s) {
+
 		years = s.getYear();
 		months = s.getMonthOfYear();
 		days = s.getDayOfMonth();
+		
 	}
 	
 	public int getYears() {
@@ -69,4 +71,5 @@ public class Age {
 	public String toString() {
 		return years + " Years, " + months + " Months, " + days + " Days";
 	}
+
 }

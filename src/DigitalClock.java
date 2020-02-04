@@ -18,6 +18,7 @@ public class DigitalClock extends JFrame {
 	public JLabel military;
 	
 	public DigitalClock(ArrayList<Student> s) {
+		
 		frame = new JFrame("Birthday Clock");
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -89,4 +90,5 @@ public class DigitalClock extends JFrame {
 		ct = new ClockThread(this);
 		frame.setVisible(true);
 	}
+
 }
