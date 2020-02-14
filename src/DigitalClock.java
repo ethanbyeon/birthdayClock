@@ -100,7 +100,7 @@ public class DigitalClock extends JFrame {
 	public void display() {
 		//CLOCK THREAD
 		frame.pack();
-		ClockThread thread = new ClockThread(this);
+		new ClockThread(this);
 		frame.setVisible(true);
 	}
 
