@@ -9,10 +9,7 @@
 @type Banner.txt
 
 @echo Compiling BDay Clock...
-javac *.java
 
 @pause
 
-java -cp .; starter
-
-@pause
+java -cp .;lib\starter.jar starter
