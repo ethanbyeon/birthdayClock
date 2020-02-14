@@ -1,3 +1,2 @@
 # birthdayClock
- DESCRI: Displays Birthday on Classroom Linux Terminal  
- (Java Variant)
+ DESCRI: Displays a students birthday using Java.
