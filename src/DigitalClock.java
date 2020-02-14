@@ -6,7 +6,6 @@ public class DigitalClock extends JFrame {
 	
 	private JFrame frame;
 	public JLabel pic;
-	private ClockThread ct;
 	
 	public ArrayList<Student> data;
 	public JLabel heading;
@@ -19,15 +18,18 @@ public class DigitalClock extends JFrame {
 	
 	public DigitalClock(ArrayList<Student> s) {
 		
+		//SET UP
 		frame = new JFrame("Birthday Clock");
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
 		frame.setLayout(null);
 		
+		//BACKGROUND
 		frame.setContentPane(new JLabel(new ImageIcon(this.getClass().getResource("bobross.jpg"))));
 		frame.setBackground(Color.BLACK);
 
+		//FONTS
 		Font f = new Font("Arial",Font.BOLD,80);
 		Font d = new Font("Arial",Font.BOLD,60);
 		Font t = new Font("AppleGothic",Font.BOLD,125);
@@ -57,7 +59,7 @@ public class DigitalClock extends JFrame {
 		countDown = new JLabel("");
 		countDown.setBounds(0,510,1500,200);
 		countDown.setFont(d);
-		countDown.setForeground(Color.RED);
+		countDown.setForeground(Color.GREEN);
 		frame.add(countDown);
 		
 		//NEXT BDAY DATE
@@ -81,13 +83,15 @@ public class DigitalClock extends JFrame {
 		military.setForeground(Color.BLUE);
 		frame.add(military);
 		
+		//INPUT
 		data = new ArrayList<Student>();
 		for(int i = 0; i < s.size(); i++) {
 			data.add(s.get(i));
 		}
-		
+
+		//CLOCK THREAD
 		frame.pack();
-		ct = new ClockThread(this);
+		ClockThread thread = new ClockThread(this);
 		frame.setVisible(true);
 	}
 

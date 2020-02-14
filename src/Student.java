@@ -7,19 +7,15 @@ public class Student {
 	private String period;
 		
 	public Student() {
-
 		name = "FIRST LAST";
 		dob = LocalDate.now();
 		period = "0";
-
     }
         
 	public Student(String name, String dob, String period) {
-
 		this.name = name;
 		this.dob = LocalDate.parse(dob);
 		this.period = period;
-		
     }
 
     //STUDENT DATA  

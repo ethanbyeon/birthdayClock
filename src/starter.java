@@ -13,7 +13,7 @@ public class starter {
 			URL url = new URL("http://drneato.com/Bday/Data.txt");
 			in = new Scanner(url.openStream());
 			
-			init();
+			collect();
 			in.close();
 			
 		}catch(Exception e){
@@ -22,7 +22,7 @@ public class starter {
 
     }
 	
-	private static void init() {
+	private static void collect() {
 		
 		students = new ArrayList<Student>();
 		ArrayList<String> data = new ArrayList<String>();
@@ -39,14 +39,9 @@ public class starter {
 			String per = "";
 
 			for(int j = 0; j <= 7 && count < data.size(); j++){
-				
 				if(j == 0) name = data.get(count);
-				
 				if(j == 1) per = data.get(count);
-				
-				if(j == 2 && data.get(count).length() <= 10){
-					students.add(new Student(name, data.get(count), per));
-				}
+				if(j == 2 && data.get(count).length() <= 10) students.add(new Student(name, data.get(count), per));
 				count++;
 			}
 		}

@@ -6,12 +6,12 @@ import java.time.format.DateTimeFormatter;
 
 public class ClockThread extends Thread {
 	
-	private DigitalClock dc;
+	private DigitalClock clock;
 	private LocalDate today;
 	private ArrayList<Student> sameDay;
 	
-	public ClockThread(DigitalClock dc) {
-		this.dc = dc;
+	public ClockThread(DigitalClock clock) {
+		this.clock = clock;
 		start();
 	}
 	
@@ -27,25 +27,25 @@ public class ClockThread extends Thread {
 			today = LocalDate.now();
 			sameDay = new ArrayList<Student>();
 			
-			checkBday(dc.data);
+			checkDay(clock.data);
 			
-			dc.date.setText(formatDateTime);
-			dc.military.setText(formatMilitaryTime);
+			clock.date.setText(formatDateTime);
+			clock.military.setText(formatMilitaryTime);
 		}
 
 	}
 	
-	private void checkBday(ArrayList<Student> s) {
+	private void checkDay(ArrayList<Student> s) {
 
 		ArrayList<Student> nextBday = new ArrayList<Student>();
-		for(int i = 0; i < s.size(); i++){
+		for(int i = 0; i < s.size(); i++) {
 			if(s.get(i).getMonthOfYear() == today.getMonthValue() && s.get(i).getDayOfMonth() == today.getDayOfMonth()) sameDay.add(s.get(i));
 			if(s.get(i).getDayOfYear() > today.getDayOfYear()) nextBday.add(s.get(i));
 		}
 		
 		Student temp = nextBday.get(0);
 		if(nextBday.size() > 1) {	
-			for(int i = 1; i < nextBday.size(); i++){
+			for(int i = 1; i < nextBday.size(); i++) {
 				if(nextBday.get(i).getDayOfYear() < temp.getDayOfYear()){
 					temp = nextBday.get(i);
 				}
@@ -53,28 +53,20 @@ public class ClockThread extends Thread {
 		}
 		
 		if(sameDay.size() == 1) {
-			dc.bdays.setText(sameDay.get(0).getName());
-			dc.now.setText("TODAY");
-		}else if(sameDay.size() > 1) {
-			sameBday();
-		}else {
-			displayNextBday(temp, temp.getName());
-		}
-
+			clock.bdays.setText(sameDay.get(0).getName());
+			clock.now.setText("TODAY");
+		}else if(sameDay.size() > 1) sameBday();
+		else displayNextBday(temp, temp.getName());
 	}
 	
 	private void sameBday() {
 
 		String names = "";
-		for(int i = 0; i < sameDay.size(); i++){
-			if(i < sameDay.size() - 1){
-				names += sameDay.get(i).getName() + ", ";
-			}else {
-				names += sameDay.get(i).getName();
-			}
+		for(int i = 0; i < sameDay.size(); i++) {
+			if(i < sameDay.size() - 1) names += sameDay.get(i).getName() + ", ";
+			else names += sameDay.get(i).getName();
 		}
-		dc.bdays.setText(names);
-
+		clock.bdays.setText(names);
 	}
 	
 	private void displayNextBday(Student s, String name) {
@@ -108,9 +100,9 @@ public class ClockThread extends Thread {
 			}
 		}
 			
-		dc.bdays.setText(name);
-		dc.next.setText("On: " + compare);
-		dc.countDown.setText("In: " + until);
+		clock.bdays.setText(name);
+		clock.next.setText("On: " + compare);
+		clock.countDown.setText("In: " + until);
 	}
 	
 }
