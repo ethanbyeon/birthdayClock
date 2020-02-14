@@ -16,7 +16,7 @@ public class starter {
 			collect();
 			in.close();
 			
-		}catch(Exception e){
+		}catch(Exception e) {
 			e.printStackTrace();
 		}
 
@@ -33,20 +33,23 @@ public class starter {
 		}
 		
 		int count = 0;
-		for(int i = 0; i < data.size(); i+=7){
+		for(int i = 0; i < data.size(); i+=7) {
 
 			String name = "";
 			String per = "";
 
-			for(int j = 0; j <= 7 && count < data.size(); j++){
-				if(j == 0) name = data.get(count);
-				if(j == 1) per = data.get(count);
-				if(j == 2 && data.get(count).length() <= 10) students.add(new Student(name, data.get(count), per));
+			for(int j = 0; j <= 7 && count < data.size(); j++) {
+				String info = data.get(count);
+
+				if(j == 0) name = info;
+				if(j == 1) per = info;
+				if(j == 2 && info.length() <= 10) students.add(new Student(name, info, per));
 				count++;
 			}
 		}
 		
 		DigitalClock joe = new DigitalClock(students);
+		joe.display();
 	}
 
 }

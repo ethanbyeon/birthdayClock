@@ -55,8 +55,9 @@ public class ClockThread extends Thread {
 		if(sameDay.size() == 1) {
 			clock.bdays.setText(sameDay.get(0).getName());
 			clock.now.setText("TODAY");
-		}else if(sameDay.size() > 1) sameBday();
-		else displayNextBday(temp, temp.getName());
+		}else if(sameDay.size() > 1) {
+			sameBday();
+		}else displayNextBday(temp, temp.getName());
 	}
 	
 	private void sameBday() {
