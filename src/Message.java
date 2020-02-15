@@ -4,14 +4,14 @@ import java.time.temporal.ChronoUnit;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class ClockThread extends Thread {
+public class Message extends Thread {
 	
-	private DigitalClock clock;
+	private Birthday bkg;
 	private LocalDate today;
 	private ArrayList<Student> sameDOB;
 	
-	public ClockThread(DigitalClock clock) {
-		this.clock = clock;
+	public Message(Birthday c) {
+		bkg = c;
 		start();
 	}
 	
@@ -27,10 +27,10 @@ public class ClockThread extends Thread {
 			today = LocalDate.now();
 			sameDOB = new ArrayList<Student>();
 			
-			checkDay(clock.data);
+			checkDay(bkg.data);
 			
-			clock.date.setText(formatDateTime);
-			clock.military.setText(formatMilitaryTime);
+			bkg.date.setText(formatDateTime);
+			bkg.military.setText(formatMilitaryTime);
 		}
 
 	}
@@ -51,8 +51,8 @@ public class ClockThread extends Thread {
 		}
 		
 		if(sameDOB.size() == 1) {
-			clock.bdays.setText(sameDOB.get(0).getName());
-			clock.now.setText("TODAY");
+			bkg.bdays.setText(sameDOB.get(0).getName());
+			bkg.now.setText("TODAY");
 		}else if(sameDOB.size() > 1) {
 			sameDay();
 		}else displayNext(temp, temp.getName());
@@ -65,7 +65,7 @@ public class ClockThread extends Thread {
 			if(i < sameDOB.size() - 1) names += sameDOB.get(i).getName() + ", ";
 			else names += sameDOB.get(i).getName();
 		}
-		clock.bdays.setText(names);
+		bkg.bdays.setText(names);
 	}
 	
 	private void displayNext(Student s, String name) {
@@ -99,9 +99,9 @@ public class ClockThread extends Thread {
 			}
 		}
 			
-		clock.bdays.setText(name);
-		clock.next.setText("On: " + compare);
-		clock.countDown.setText("In: " + until);
+		bkg.bdays.setText(name);
+		bkg.next.setText("On: " + compare);
+		bkg.countDown.setText("In: " + until);
 	}
 	
 }

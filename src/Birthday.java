@@ -2,7 +2,7 @@ import java.util.*;
 import java.awt.*;
 import javax.swing.*;
 
-public class DigitalClock extends JFrame {
+public class Birthday extends JFrame {
 	
 	private JFrame frame;
 	public JLabel pic;
@@ -16,7 +16,7 @@ public class DigitalClock extends JFrame {
 	public JLabel date;
 	public JLabel military;
 
-	public DigitalClock() {
+	public Birthday() {
 
 		//SET UP
 		frame = new JFrame("Birthday Clock");
@@ -25,7 +25,7 @@ public class DigitalClock extends JFrame {
 		frame.setLocationRelativeTo(null);
 		frame.setLayout(null);
 		frame.setUndecorated(true);
-		GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().setFullScreenWindow(frame);
+		//GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().setFullScreenWindow(frame);
 		
 		//BACKGROUND
 		frame.setContentPane(new JLabel(new ImageIcon(this.getClass().getResource("bobross.jpg"))));
@@ -87,7 +87,7 @@ public class DigitalClock extends JFrame {
 
 	}
 	
-	public DigitalClock(ArrayList<Student> s) {
+	public Birthday(ArrayList<Student> s) {
 
 		this();
 
@@ -101,7 +101,7 @@ public class DigitalClock extends JFrame {
 	public void display() {
 		//CLOCK THREAD
 		frame.pack();
-		new ClockThread(this);
+		new Message(this);
 		frame.setVisible(true);
 	}
 

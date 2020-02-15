@@ -49,7 +49,7 @@ public class starter {
 			}
 		}
 		
-		DigitalClock joe = new DigitalClock(students);
+		Birthday joe = new Birthday(students);
 		joe.display();
 	}
 
