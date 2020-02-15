@@ -44,6 +44,7 @@ public class starter {
 				if(j == 0) name = info;
 				if(j == 1) per = info;
 				if(j == 2 && info.length() <= 10) students.add(new Student(name, info, per));
+
 				count++;
 			}
 		}

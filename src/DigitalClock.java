@@ -96,7 +96,6 @@ public class DigitalClock extends JFrame {
 		for(Student student: s) {
 			data.add(student);
 		}
-
 	}
 
 	public void display() {
