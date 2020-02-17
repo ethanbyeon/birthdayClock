@@ -4,6 +4,7 @@ import javax.swing.*;
 
 public class Birthday extends JFrame {
 	
+	private static final long serialVersionUID = 1L;
 	private JFrame frame;
 	public JLabel pic;
 	
@@ -25,11 +26,11 @@ public class Birthday extends JFrame {
 		frame.setLocationRelativeTo(null);
 		frame.setLayout(null);
 		frame.setUndecorated(true);
-		//GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().setFullScreenWindow(frame);
+		GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().setFullScreenWindow(frame);
 		
 		//BACKGROUND
-		frame.setContentPane(new JLabel(new ImageIcon(this.getClass().getResource("bobross.jpg"))));
 		frame.setBackground(Color.BLACK);
+		frame.setContentPane(new JLabel(new ImageIcon(this.getClass().getResource("bobross.jpg"))));
 
 		//FONTS
 		Font f = new Font("Arial",Font.BOLD,80);
