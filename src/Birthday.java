@@ -2,6 +2,7 @@ import java.util.*;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
+//import java.net.URL;
 
 public class Birthday extends JFrame {
 	
@@ -42,6 +43,21 @@ public class Birthday extends JFrame {
 			}
 		});
 		frame.add(exit);
+
+		//VIDEO
+		// try {
+		// 	URL url = new URL("https://www.youtube.com/watch?v=mT0RNrTDHkI");
+			
+		// 	JPanel panel = new JPanel();
+		// 	player = Manager.createRealizedPlayer(url);
+		// 	Component video = player.getVisualComponent();
+		// 	video.setSize(frame.getSize());
+		// 	panel.add(video);
+		// 	frame.add(panel); 
+			
+		// } catch(Exception e) {
+		// 	System.out.println(e);
+		// }
 
 		//FONTS
 		Font f = new Font("Arial", Font.BOLD, 80);
@@ -111,6 +127,8 @@ public class Birthday extends JFrame {
 	}
 
 	public void display() {
+		// player.start();
+		// panel.udpateUI();
 		new Message(this);
 	}
 
