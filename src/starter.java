@@ -5,6 +5,7 @@ public class starter {
 	
 	static Scanner in;
 	static ArrayList<Student> students;
+	static Birthday joe;
 	
     public static void main(String args[]) {
 		
@@ -14,12 +15,15 @@ public class starter {
 			in = new Scanner(url.openStream());
 			
 			collect();
-			in.close();
+			
+			joe = new Birthday(students);
+			while(true) {
+				joe.display();
+			}
 			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-
     }
 	
 	private static void collect() {
@@ -48,9 +52,5 @@ public class starter {
 				count++;
 			}
 		}
-		
-		Birthday joe = new Birthday(students);
-		joe.display();
 	}
-
 }

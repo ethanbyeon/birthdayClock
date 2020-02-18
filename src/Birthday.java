@@ -1,15 +1,15 @@
 import java.util.*;
 import java.awt.*;
 import javax.swing.*;
+import java.awt.event.*;
 
 public class Birthday extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
-	private JFrame frame;
-	public JLabel pic;
+	public JFrame frame;
 	
 	public ArrayList<Student> data;
-	public JLabel heading;
+	private JLabel heading;
 	public JLabel bdays;
 	public JLabel now;
 	public JLabel next;
@@ -26,16 +26,27 @@ public class Birthday extends JFrame {
 		frame.setLocationRelativeTo(null);
 		frame.setLayout(null);
 		frame.setUndecorated(true);
+		//frame.pack(); //Adjusts Jframe to fit image size
 		GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().setFullScreenWindow(frame);
 		
 		//BACKGROUND
 		frame.setBackground(Color.BLACK);
 		frame.setContentPane(new JLabel(new ImageIcon(this.getClass().getResource("bobross.jpg"))));
 
+		//EXIT BUTTON
+		JButton exit = new JButton("EXIT");
+		exit.setBounds(frame.getWidth() - 90, frame.getHeight() - 100, 90, 50);
+		exit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		frame.add(exit);
+
 		//FONTS
-		Font f = new Font("Arial",Font.BOLD,80);
-		Font d = new Font("Arial",Font.BOLD,60);
-		Font t = new Font("AppleGothic",Font.BOLD,125);
+		Font f = new Font("Arial", Font.BOLD, 80);
+		Font d = new Font("Arial", Font.BOLD, 60);
+		Font t = new Font("AppleGothic", Font.BOLD, 125);
 		
 		//HEADING
 		heading = new JLabel("Happy Birthday!");
@@ -100,10 +111,7 @@ public class Birthday extends JFrame {
 	}
 
 	public void display() {
-		//CLOCK THREAD
-		frame.pack();
 		new Message(this);
-		frame.setVisible(true);
 	}
 
 }

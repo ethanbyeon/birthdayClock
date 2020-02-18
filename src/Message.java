@@ -4,37 +4,34 @@ import java.time.temporal.ChronoUnit;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Message extends Thread {
+public class Message {
 	
-	private Birthday bkg;
+	private Birthday bday;
 	private LocalDate today;
 	private ArrayList<Student> sameDOB;
 	
 	public Message(Birthday c) {
-		bkg = c;
-		start();
+
+		bday = c;
+		today = LocalDate.now();
+		sameDOB = new ArrayList<Student>();
+
+		//TIME & DATE
+		LocalDateTime currentTime = LocalDateTime.now();
+		DateTimeFormatter formatCurrent = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		DateTimeFormatter formatMilitary = DateTimeFormatter.ofPattern("HH:mm:ss");
+
+		String formatDateTime = currentTime.format(formatCurrent);
+		String formatMilitaryTime = currentTime.format(formatMilitary);
+
+		checkDay(bday.data);
+
+		//SETS BDAY OF STUDENT ONTO DISPLAY
+		bday.date.setText(formatDateTime);
+		bday.military.setText(formatMilitaryTime);
 	}
 	
-	public void run() {
-
-		while(true) {
-			LocalDateTime currentTime = LocalDateTime.now();
-			DateTimeFormatter formatCurrent = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-			DateTimeFormatter formatMilitary = DateTimeFormatter.ofPattern("HH:mm:ss");
-			String formatDateTime = currentTime.format(formatCurrent);
-			String formatMilitaryTime = currentTime.format(formatMilitary);
-			
-			today = LocalDate.now();
-			sameDOB = new ArrayList<Student>();
-			
-			checkDay(bkg.data);
-			
-			bkg.date.setText(formatDateTime);
-			bkg.military.setText(formatMilitaryTime);
-		}
-
-	}
-	
+	//CHECKS WHETHER STUDENT HAS THE SAME BDAY OR THE CLOSEST BDAY
 	private void checkDay(ArrayList<Student> s) {
 
 		ArrayList<Student> nextDOB = new ArrayList<Student>();
@@ -51,13 +48,15 @@ public class Message extends Thread {
 		}
 		
 		if(sameDOB.size() == 1) {
-			bkg.bdays.setText(sameDOB.get(0).getName());
-			bkg.now.setText("TODAY");
+			bday.bdays.setText(sameDOB.get(0).getName());
+			bday.now.setText("TODAY");
 		}else if(sameDOB.size() > 1) {
 			sameDay();
 		}else displayNext(temp, temp.getName());
+
 	}
 	
+	//CHECKS FOR STUDENTS WITH THE SAME BDAY
 	private void sameDay() {
 
 		String names = "";
@@ -65,9 +64,11 @@ public class Message extends Thread {
 			if(i < sameDOB.size() - 1) names += sameDOB.get(i).getName() + ", ";
 			else names += sameDOB.get(i).getName();
 		}
-		bkg.bdays.setText(names);
+		bday.bdays.setText(names);
+
 	}
 	
+	//CHECKS FOR THE NEXT BDAY
 	private void displayNext(Student s, String name) {
 
 		long weeksBetween = 0L;
@@ -99,9 +100,9 @@ public class Message extends Thread {
 			}
 		}
 			
-		bkg.bdays.setText(name);
-		bkg.next.setText("On: " + compare);
-		bkg.countDown.setText("In: " + until);
+		bday.bdays.setText(name);
+		bday.next.setText("On: " + compare);
+		bday.countDown.setText("In: " + until);
+
 	}
-	
 }
