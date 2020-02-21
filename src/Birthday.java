@@ -2,13 +2,12 @@ import java.util.*;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
-//import java.net.URL;
 
 public class Birthday extends JFrame {
-	
+
 	private static final long serialVersionUID = 1L;
 	public JFrame frame;
-	
+
 	public ArrayList<Student> data;
 	private JLabel heading;
 	public JLabel bdays;
@@ -20,23 +19,22 @@ public class Birthday extends JFrame {
 
 	public Birthday() {
 
-		//SET UP
+		// SET UP
 		frame = new JFrame("Birthday Clock");
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
 		frame.setLayout(null);
 		frame.setUndecorated(true);
-		//frame.pack(); //Adjusts Jframe to fit image size
 		GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().setFullScreenWindow(frame);
-		
-		//BACKGROUND
+
+		// BACKGROUND
 		frame.setBackground(Color.BLACK);
 		frame.setContentPane(new JLabel(new ImageIcon(this.getClass().getResource("bobross.jpg"))));
 
-		//EXIT BUTTON
+		// EXIT BUTTON
 		JButton exit = new JButton("EXIT");
-		exit.setBounds(frame.getWidth() - 90, frame.getHeight() - 100, 90, 50);
+		exit.setBounds(frame.getWidth() - 90, frame.getHeight() - 50, 90, 50);
 		exit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
@@ -44,69 +42,54 @@ public class Birthday extends JFrame {
 		});
 		frame.add(exit);
 
-		//VIDEO
-		// try {
-		// 	URL url = new URL("https://www.youtube.com/watch?v=mT0RNrTDHkI");
-			
-		// 	JPanel panel = new JPanel();
-		// 	player = Manager.createRealizedPlayer(url);
-		// 	Component video = player.getVisualComponent();
-		// 	video.setSize(frame.getSize());
-		// 	panel.add(video);
-		// 	frame.add(panel); 
-			
-		// } catch(Exception e) {
-		// 	System.out.println(e);
-		// }
-
-		//FONTS
+		// FONTS
 		Font f = new Font("Arial", Font.BOLD, 80);
 		Font d = new Font("Arial", Font.BOLD, 60);
 		Font t = new Font("AppleGothic", Font.BOLD, 125);
-		
-		//HEADING
+
+		// HEADING
 		heading = new JLabel("Happy Birthday!");
 		heading.setBounds(0, 300, 1000, 170);
 		heading.setFont(f);
 		heading.setForeground(Color.RED);
 		frame.add(heading);
-		
-		//BDAY NAMES
+
+		// BDAY NAMES
 		bdays = new JLabel("JOE SMITH");
 		bdays.setBounds(0, 420, 5000, 170);
 		bdays.setFont(t);
 		bdays.setForeground(Color.BLUE);
 		frame.add(bdays);
-		
-		//BDAY TODAY
+
+		// BDAY TODAY
 		now = new JLabel("");
 		now.setBounds(0, 530, 800, 200);
 		now.setFont(f);
 		now.setForeground(Color.GREEN);
 		frame.add(now);
-		
-		//TIME UNTIL NEXT BDAY
+
+		// TIME UNTIL NEXT BDAY
 		countDown = new JLabel("");
 		countDown.setBounds(0, 510, 1500, 200);
 		countDown.setFont(d);
 		countDown.setForeground(Color.GREEN);
 		frame.add(countDown);
-		
-		//NEXT BDAY DATE
+
+		// NEXT BDAY DATE
 		next = new JLabel("");
 		next.setBounds(0, 580, 800, 200);
 		next.setFont(d);
 		next.setForeground(Color.RED);
 		frame.add(next);
-		
-		//TODAY'S DATE
+
+		// TODAY'S DATE
 		date = new JLabel("TODAY'S DATE");
 		date.setBounds(865, 70, 700, 300);
 		date.setFont(f);
 		date.setForeground(Color.RED);
 		frame.add(date);
-		
-		//CURRENT TIME
+
+		// CURRENT TIME
 		military = new JLabel("CURRENT TIME");
 		military.setBounds(910, 160, 700, 300);
 		military.setFont(f);
@@ -114,21 +97,19 @@ public class Birthday extends JFrame {
 		frame.add(military);
 
 	}
-	
+
 	public Birthday(ArrayList<Student> s) {
 
 		this();
 
-		//INPUT
+		// INPUT
 		data = new ArrayList<Student>();
-		for(Student student: s) {
+		for (Student student : s) {
 			data.add(student);
 		}
 	}
 
 	public void display() {
-		// player.start();
-		// panel.udpateUI();
 		new Message(this);
 	}
 
