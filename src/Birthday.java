@@ -30,7 +30,7 @@ public class Birthday extends JFrame {
 
 		// BACKGROUND
 		frame.setBackground(Color.BLACK);
-		frame.setContentPane(new JLabel(new ImageIcon(this.getClass().getResource("bobross.jpg"))));
+		frame.setContentPane(new JLabel(new ImageIcon(this.getClass().getResource("simpsonloop.gif"))));
 
 		// EXIT BUTTON
 		JButton exit = new JButton("EXIT");
@@ -42,58 +42,59 @@ public class Birthday extends JFrame {
 		});
 		frame.add(exit);
 
-		// FONTS
-		Font f = new Font("Arial", Font.BOLD, 80);
-		Font d = new Font("Arial", Font.BOLD, 60);
-		Font t = new Font("AppleGothic", Font.BOLD, 125);
+		// FONTS (add pixel font for time)
+		Font h = new Font("Helvetica", Font.PLAIN, 80);
+		Font c = new Font("Courier", Font.PLAIN, 125);
+		Font t = new Font("Courier", Font.PLAIN, 150);
+		Font d = new Font("Arial", Font.PLAIN, 60);
 
 		// HEADING
 		heading = new JLabel("Happy Birthday!");
-		heading.setBounds(0, 300, 1000, 170);
-		heading.setFont(f);
+		heading.setBounds(0, 0, 1000, 170);
+		heading.setFont(h);
 		heading.setForeground(Color.RED);
 		frame.add(heading);
 
 		// BDAY NAMES
 		bdays = new JLabel("JOE SMITH");
-		bdays.setBounds(0, 420, 5000, 170);
-		bdays.setFont(t);
-		bdays.setForeground(Color.BLUE);
+		bdays.setBounds(0, 100, 5000, 170);
+		bdays.setFont(c);
+		bdays.setForeground(Color.PINK);
 		frame.add(bdays);
 
 		// BDAY TODAY
 		now = new JLabel("");
-		now.setBounds(0, 530, 800, 200);
-		now.setFont(f);
+		now.setBounds(0, 800, 800, 200);
+		now.setFont(h);
 		now.setForeground(Color.GREEN);
 		frame.add(now);
 
-		// TIME UNTIL NEXT BDAY
-		countDown = new JLabel("");
-		countDown.setBounds(0, 510, 1500, 200);
-		countDown.setFont(d);
-		countDown.setForeground(Color.GREEN);
-		frame.add(countDown);
-
 		// NEXT BDAY DATE
 		next = new JLabel("");
-		next.setBounds(0, 580, 800, 200);
+		next.setBounds(0, 800, 800, 200);
 		next.setFont(d);
 		next.setForeground(Color.RED);
 		frame.add(next);
 
+		// TIME UNTIL NEXT BDAY
+		countDown = new JLabel("");
+		countDown.setBounds(0, 900, 1500, 200);
+		countDown.setFont(d);
+		countDown.setForeground(Color.GREEN);
+		frame.add(countDown);
+
 		// TODAY'S DATE
 		date = new JLabel("TODAY'S DATE");
-		date.setBounds(865, 70, 700, 300);
-		date.setFont(f);
-		date.setForeground(Color.RED);
+		date.setBounds(570, 300, 2000, 300);
+		date.setFont(t);
+		date.setForeground(Color.ORANGE);
 		frame.add(date);
 
 		// CURRENT TIME
 		military = new JLabel("CURRENT TIME");
-		military.setBounds(910, 160, 700, 300);
-		military.setFont(f);
-		military.setForeground(Color.BLUE);
+		military.setBounds(670, 450, 1000, 300);
+		military.setFont(t);
+		military.setForeground(Color.ORANGE);
 		frame.add(military);
 
 	}
