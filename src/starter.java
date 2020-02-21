@@ -17,6 +17,7 @@ public class starter {
 			collect();
 			
 			joe = new Birthday(students);
+			SlideShow image = new SlideShow();
 			while(true) {
 				joe.display();
 			}

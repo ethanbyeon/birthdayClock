@@ -29,9 +29,9 @@ public class Birthday extends JFrame {
 		GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().setFullScreenWindow(frame);
 
 		// BACKGROUND
-		frame.setBackground(Color.BLACK);
-		frame.setContentPane(new JLabel(new ImageIcon(this.getClass().getResource("simpsonloop.gif"))));
-
+		//frame.setBackground(Color.BLACK);
+		//frame.setContentPane(new JLabel(new ImageIcon(this.getClass().getResource("simpsonloop.gif"))));
+		
 		// EXIT BUTTON
 		JButton exit = new JButton("EXIT");
 		exit.setBounds(frame.getWidth() - 90, frame.getHeight() - 50, 90, 50);
