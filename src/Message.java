@@ -4,31 +4,42 @@ import java.time.temporal.ChronoUnit;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Message {
+public class Message extends Thread {
 	
-	private Birthday bday;
+	private Display bday;
 	private LocalDate today;
 	private ArrayList<Student> sameDOB;
 	
-	public Message(Birthday c) {
+	public Message(Display c) {
 
 		bday = c;
 		today = LocalDate.now();
 		sameDOB = new ArrayList<Student>();
 
-		//TIME & DATE
-		LocalDateTime currentTime = LocalDateTime.now();
-		DateTimeFormatter formatCurrent = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		DateTimeFormatter formatMilitary = DateTimeFormatter.ofPattern("HH:mm:ss");
+		start();
+	}
 
-		String formatDateTime = currentTime.format(formatCurrent);
-		String formatMilitaryTime = currentTime.format(formatMilitary);
+	public void run() {
+		
+		while(true) {
 
-		checkDay(bday.data);
+			//TIME & DATE
+			LocalDateTime currentTime = LocalDateTime.now();
+			DateTimeFormatter formatCurrent = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			DateTimeFormatter formatMilitary = DateTimeFormatter.ofPattern("HH:mm:ss");
 
-		//SETS BDAY OF STUDENT ONTO DISPLAY
-		bday.date.setText(formatDateTime);
-		bday.military.setText(formatMilitaryTime);
+			String formatDateTime = currentTime.format(formatCurrent);
+			String formatMilitaryTime = currentTime.format(formatMilitary);
+
+			checkDay(bday.data);
+
+			//SETS BDAY OF STUDENT ONTO DISPLAY
+			bday.date.setText(formatDateTime);
+			bday.military.setText(formatMilitaryTime);
+
+			//TRANSITIONS TO NEXT PICTURE
+		}
+
 	}
 	
 	//CHECKS WHETHER STUDENT HAS THE SAME BDAY OR THE CLOSEST BDAY

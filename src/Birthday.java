@@ -1,117 +1,53 @@
 import java.util.*;
-import java.awt.*;
-import javax.swing.*;
-import java.awt.event.*;
+import java.net.*;
 
-public class Birthday extends JFrame {
-
-	private static final long serialVersionUID = 1L;
-	public JFrame frame;
-
-	public ArrayList<Student> data;
-	private JLabel heading;
-	public JLabel bdays;
-	public JLabel now;
-	public JLabel next;
-	public JLabel countDown;
-	public JLabel date;
-	public JLabel military;
-
-	public Birthday() {
-
-		// SET UP
-		frame = new JFrame("Birthday Clock");
-		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setLocationRelativeTo(null);
-		frame.setLayout(null);
-		frame.setUndecorated(true);
-		GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().setFullScreenWindow(frame);
-
-		// BACKGROUND
-		//frame.setBackground(Color.BLACK);
-		//frame.setContentPane(new JLabel(new ImageIcon(this.getClass().getResource("simpsonloop.gif"))));
+public class Birthday {
+	
+	static Scanner in;
+	static ArrayList<Student> students;
+	
+    public static void main(String args[]) {
 		
-		// EXIT BUTTON
-		JButton exit = new JButton("EXIT");
-		exit.setBounds(frame.getWidth() - 90, frame.getHeight() - 50, 90, 50);
-		exit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
+		try {
+			
+			URL url = new URL("http://drneato.com/Bday/Data.txt");
+			in = new Scanner(url.openStream());
+			
+			collect();
+			
+			Display joe = new Display(students);
+			joe.show();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+    }
+	
+	private static void collect() {
+		
+		students = new ArrayList<Student>();
+		ArrayList<String> data = new ArrayList<String>();
+		
+		while(in.hasNextLine()) {
+			String line = in.nextLine();
+			data.add(line);
+		}
+		
+		int count = 0;
+		for(int i = 0; i < data.size(); i+=7) {
+
+			String name = "";
+			String per = "";
+
+			for(int j = 0; j <= 7 && count < data.size(); j++) {
+				String info = data.get(count);
+
+				if(j == 0) name = info;
+				if(j == 1) per = info;
+				if(j == 2 && info.length() <= 10) students.add(new Student(name, info, per));
+
+				count++;
 			}
-		});
-		frame.add(exit);
-
-		// FONTS (add pixel font for time)
-		Font h = new Font("Helvetica", Font.PLAIN, 80);
-		Font c = new Font("Courier", Font.PLAIN, 125);
-		Font t = new Font("Courier", Font.PLAIN, 150);
-		Font d = new Font("Arial", Font.PLAIN, 60);
-
-		// HEADING
-		heading = new JLabel("Happy Birthday!");
-		heading.setBounds(0, 0, 1000, 170);
-		heading.setFont(h);
-		heading.setForeground(Color.RED);
-		frame.add(heading);
-
-		// BDAY NAMES
-		bdays = new JLabel("JOE SMITH");
-		bdays.setBounds(0, 100, 5000, 170);
-		bdays.setFont(c);
-		bdays.setForeground(Color.PINK);
-		frame.add(bdays);
-
-		// BDAY TODAY
-		now = new JLabel("");
-		now.setBounds(0, 800, 800, 200);
-		now.setFont(h);
-		now.setForeground(Color.GREEN);
-		frame.add(now);
-
-		// NEXT BDAY DATE
-		next = new JLabel("");
-		next.setBounds(0, 800, 800, 200);
-		next.setFont(d);
-		next.setForeground(Color.RED);
-		frame.add(next);
-
-		// TIME UNTIL NEXT BDAY
-		countDown = new JLabel("");
-		countDown.setBounds(0, 900, 1500, 200);
-		countDown.setFont(d);
-		countDown.setForeground(Color.GREEN);
-		frame.add(countDown);
-
-		// TODAY'S DATE
-		date = new JLabel("TODAY'S DATE");
-		date.setBounds(570, 300, 2000, 300);
-		date.setFont(t);
-		date.setForeground(Color.ORANGE);
-		frame.add(date);
-
-		// CURRENT TIME
-		military = new JLabel("CURRENT TIME");
-		military.setBounds(670, 450, 1000, 300);
-		military.setFont(t);
-		military.setForeground(Color.ORANGE);
-		frame.add(military);
-
-	}
-
-	public Birthday(ArrayList<Student> s) {
-
-		this();
-
-		// INPUT
-		data = new ArrayList<Student>();
-		for (Student student : s) {
-			data.add(student);
 		}
 	}
-
-	public void display() {
-		new Message(this);
-	}
-
 }

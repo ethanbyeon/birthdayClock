@@ -5,15 +5,16 @@ import java.io.File;
 import javax.swing.*;
 
 
-public class SlideShow extends Birthday {
-
-    private static final long serialVersionUID = 1L;
+public class SlideShow {
 
     Timer tm;
     int x = 0;
     File[] pic;
+    Birthday bday;
     
-    public SlideShow() {
+    public SlideShow(Birthday c) {
+
+        bday = c;
 
         File folder = new File("res");
         pic = folder.listFiles();
@@ -22,23 +23,14 @@ public class SlideShow extends Birthday {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                //SetImageSize(x);
                 x++;
-                if(x >= getFileSize()) x = 0; 
+                if(x >= pic.length) x = 0;
+                //bday.frame.setContentPane(new JLabel(new ImageIcon(pic[x].toString())));
             }
         });
 
-        System.out.println(getFileSize());
-
-        frame.setContentPane(new JLabel(new ImageIcon(pic[x].toString())));
+        System.out.println(pic[x]);
         tm.start();
-    }
-
-    private int getFileSize() {
-        
-        if(pic == null) return 0;
-
-        return pic.length;
     }
 
 }
