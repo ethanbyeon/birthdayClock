@@ -1,7 +1,7 @@
 import java.util.*;
 import java.net.*;
 
-public class Birthday {
+public class starter {
 	
 	static Scanner in;
 	static ArrayList<Student> students;
@@ -16,7 +16,8 @@ public class Birthday {
 			collect();
 			
 			Display joe = new Display(students);
-			joe.show();
+			new SlideShow(joe);
+			//joe.show();
 			
 		}catch(Exception e) {
 			e.printStackTrace();
