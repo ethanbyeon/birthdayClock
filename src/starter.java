@@ -1,4 +1,5 @@
 import java.util.*;
+import javax.swing.SwingUtilities;
 import java.net.*;
 
 public class starter {
@@ -6,23 +7,25 @@ public class starter {
 	static Scanner in;
 	static ArrayList<Student> students;
 	
-    public static void main(String args[]) {
-		
+	public static void main(String args[]) {
+
 		try {
-			
+
 			URL url = new URL("http://drneato.com/Bday/Data.txt");
 			in = new Scanner(url.openStream());
-			
+
 			collect();
-			
-			Display joe = new Display(students);
-			new SlideShow(joe);
-			//joe.show();
-			
+
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					new Display().createAndDisplayGUI(students);
+				}
+			});
+
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-    }
+	}
 	
 	private static void collect() {
 		
