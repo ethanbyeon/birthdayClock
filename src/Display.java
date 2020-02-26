@@ -73,14 +73,12 @@ public class Display extends JFrame {
 				p = new ImageIcon(new ImageIcon("res/static.gif").getImage().getScaledInstance(1200, 660, Image.SCALE_DEFAULT));
 				pic.setBounds(330, 175, p.getIconWidth(), p.getIconHeight());
 				pic.setIcon(p);
-				//System.out.println("count 1");
 				
 			}else if(count == 3) {
 				
 				p = new ImageIcon(new ImageIcon(pictures[picx].getPath()).getImage().getScaledInstance(1200, 660, Image.SCALE_DEFAULT));
 				pic.setBounds(330, 175, p.getIconWidth(), p.getIconHeight());
 				pic.setIcon(p);
-				//System.out.println("count 2");
 				
 			}else if(count == 18) {
 				count = 1;
