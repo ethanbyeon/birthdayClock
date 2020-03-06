@@ -17,7 +17,7 @@ public class Message {
 		today = LocalDate.now();
 		sameDOB = new ArrayList<Student>();
 
-		//TIME & DATE
+		// TIME & DATE
 		LocalDateTime currentTime = LocalDateTime.now();
 		DateTimeFormatter formatCurrent = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		DateTimeFormatter formatMilitary = DateTimeFormatter.ofPattern("HH:mm:ss");
@@ -27,13 +27,13 @@ public class Message {
 
 		checkDay(bday.data);
 
-		//SETS BDAY OF STUDENT ONTO DISPLAY
+		// SETS BDAY OF STUDENT ONTO DISPLAY
 		bday.date.setText(formatDateTime);
 		bday.military.setText(formatMilitaryTime);
 		
 	}
 	
-	//CHECKS WHETHER STUDENT HAS THE SAME BDAY OR THE CLOSEST BDAY
+	// CHECKS WHETHER STUDENT HAS THE SAME BDAY OR THE CLOSEST BDAY
 	private void checkDay(ArrayList<Student> s) {
 
 		ArrayList<Student> nextDOB = new ArrayList<Student>();
@@ -62,19 +62,24 @@ public class Message {
 
 	}
 	
-	//CHECKS FOR STUDENTS WITH THE SAME BDAY
+	// CHECKS FOR STUDENTS WITH THE SAME BDAY
 	private void sameDay() {
 
-		String names = "";
-		for(int i = 0; i < sameDOB.size(); i++) {
-			if(i < sameDOB.size() - 1) names += sameDOB.get(i).getName() + ", ";
-			else names += sameDOB.get(i).getName();
-		}
-		bday.bdays.setText(names);
+//		String names = "";
+//		for(int i = 0; i < sameDOB.size(); i++) {
+//			
+//			if(i < sameDOB.size() - 1) names += sameDOB.get(i).getName() + ", ";
+//			else names += sameDOB.get(i).getName();
+//			
+//		}
+//		
+//		bday.bdays.setText(names);
+		
+		bday.samebday.setText(sameDOB.get(1).getName());
 
 	}
 	
-	//CHECKS FOR THE NEXT BDAY
+	// CHECKS FOR THE NEXT BDAY
 	private void displayNext(Student s, String name) {
 
 		long weeksBetween = 0L;
