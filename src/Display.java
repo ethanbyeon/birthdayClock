@@ -17,29 +17,41 @@ public class Display extends JFrame {
 	JFrame frame;
 	JFrame bkg;
 	
-	//OBJECTS ON FRAME
+	// TEXT OBJECTS
 	JLabel heading;
 	JLabel bdays;
+	JLabel samebday;
 	JLabel now;
 	JLabel next;
 	JLabel countDown;
 	JLabel date;
 	JLabel military;
 	
-	//BACKGROUND IMAGE
+	// BACKGROUND IMAGE
+	File folder = new File("res/pics");
+	File[] pictures = folder.listFiles();
 	JLabel pic;
-	File[] pictures;
 	ImageIcon p;
+	
+	// BACKGROUND
+	File tv = new File("res/simpsonstv.png");
+	Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
+	
+	// FONTS
+	Font h = new Font("Courier", Font.BOLD, 70);	//HAPPY BDAY
+	Font c = new Font("Courier", Font.PLAIN, 100);	//NAMES
+	Font t = new Font("Courier", Font.BOLD, 110);	//TIME
+	Font d = new Font("Courier", Font.BOLD, 50);	//DUE DATE
 
-	//TIMERS
+	// TIMERS
 	Timer timer;
 	Timer timer2;
 	
-	//COUNTER VARIABLES FOR TIMER
+	// COUNTER VARIABLES FOR TIMER
 	int count = 1;
 	int picx = 0;
 	
-	//REFRESH OBJECTS ON FRAME
+	// REFRESH OBJECTS ON FRAME
 	private ActionListener action = new ActionListener() {
 		
 		public void actionPerformed(ActionEvent ae) {
@@ -48,6 +60,7 @@ public class Display extends JFrame {
 			
 			remove(heading);
 			remove(bdays);
+			remove(samebday);
 			remove(now);
 			remove(next);
 			remove(countDown);
@@ -113,11 +126,7 @@ public class Display extends JFrame {
 		frame.setLayout(null);
 		frame.setUndecorated(true);
 		GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().setFullScreenWindow(frame);
-
-		// BACKGROUND
-		File bkg = new File("res/simpsonstv.png");
-		Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
-		frame.setContentPane(new JLabel(new ImageIcon(((new ImageIcon(bkg.getPath())).getImage()).getScaledInstance((int) size.getWidth(), (int) size.getHeight(), Image.SCALE_SMOOTH))));
+		frame.setContentPane(new JLabel(new ImageIcon(((new ImageIcon(tv.getPath())).getImage()).getScaledInstance((int) size.getWidth(), (int) size.getHeight(), Image.SCALE_SMOOTH))));
 		
 		// EXIT BUTTON
 		JButton exit = new JButton("EXIT");
@@ -128,12 +137,6 @@ public class Display extends JFrame {
 			}
 		});
 		frame.add(exit);
-
-		// FONTS
-		Font h = new Font("Courier", Font.BOLD, 70);	//HAPPY BDAY
-		Font c = new Font("Courier", Font.PLAIN, 100);	//NAMES
-		Font t = new Font("Courier", Font.BOLD, 110);	//TIME
-		Font d = new Font("Courier", Font.BOLD, 50);	//DUE DATE
 
 		// HAPPY BIRTHDAY!
 		heading = new JLabel("Happy Birthday!");
@@ -148,6 +151,13 @@ public class Display extends JFrame {
 		bdays.setFont(c);
 		bdays.setForeground(Color.PINK);
 		frame.add(bdays);
+		
+		// SAME BDAY
+		samebday = new JLabel("");
+		samebday.setBounds(350, 280, 5000, 170);
+		samebday.setFont(c);
+		samebday.setForeground(Color.PINK);
+		frame.add(samebday);
 
 		// BDAY TODAY
 		now = new JLabel("");
@@ -185,8 +195,6 @@ public class Display extends JFrame {
 		frame.add(military);
 		
 		// BACKGROUND IMAGES
-		File folder = new File("res/pics");
-		pictures = folder.listFiles();
 		pic = new JLabel();
 		frame.add(pic);
 		
