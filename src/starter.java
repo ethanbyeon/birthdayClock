@@ -76,7 +76,7 @@ public class starter {
 		
 		try {
 			
-			excel = new Scanner(new File("Student Locator Spring 2020.csv"));
+			excel = new Scanner(new File("INSERT CSV FILE HERE"));
 			
 			if(verify(student)) return true;
 			
